@@ -7,7 +7,14 @@ direction = ['NORTH', 'SOUTH', 'EAST', 'WEST']
 
 class Position:
     def __init__(self, x, y, facing):
-        pass
+        if int(x) in length and int(y) in width and facing in direction:
+            self.x = int(x)
+            self.y = int(y)
+            self.facing = facing
+            print('Robot placed successfully')
+        else:
+            raise InvalidCoordinates
+
 
 class InvalidCoordinates(BaseException):
     pass
