@@ -11,7 +11,7 @@ def is_robot_placed(func):
     return placed
 
 
-# My Toy robot needs a table and initial position
+# Toy robot needs a table and initial position
 class ToyRobot:
 
     position = None
@@ -64,8 +64,12 @@ class ToyRobot:
 
     def action_on_robot(self, action):
         action = action.split()
+        if len(action) > 2:
+            raise InvalidCommand
         if action[0] == 'PLACE':
             position = tuple(action[1].split(','))
+            if len(position) != 3:
+                raise InvalidCommand
             self.place(position)
         elif action[0] == 'MOVE':
             self.move()
@@ -75,3 +79,9 @@ class ToyRobot:
             self.right()
         elif action[0] == 'REPORT':
             self.report()
+        else:
+            raise InvalidCommand
+
+
+class InvalidCommand(BaseException):
+    pass

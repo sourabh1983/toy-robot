@@ -2,3 +2,4 @@ labeled-enum
 pytest
 isort
 flake8
+mock

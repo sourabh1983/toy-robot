@@ -18,10 +18,17 @@ pip install tox
 
 Run `tox`
 
-## Running robot on table
+## Running robot on table using standard input
 
 ```
 tox -e robot
+```
+
+## Running robot on table from file containing commands
+`testdata.txt` contains commands
+
+```
+tox -e robot -- file
 ```
 
 Application can read in commands of the following form -

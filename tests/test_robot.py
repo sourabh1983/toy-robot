@@ -1,6 +1,6 @@
 import pytest
 
-from robot.robot import ToyRobot
+from robot.robot import InvalidCommand, ToyRobot
 
 
 def test_place():
@@ -97,3 +97,19 @@ def test_robot_movement(place, action, position):
     assert (
         bot.position.x, bot.position.y, bot.position.facing
     ) == bot.report()
+
+
+@pytest.mark.parametrize(
+    'command',
+    [
+        'PLACE 1, 1, NORTH',   # Invalid because spaces after comma
+        'MOV',
+        'XYZ',
+        'PLACE 1,1',
+        'PLACE 1,1,1,1,1'
+    ]
+)
+def test_invalid_commands(command):
+    bot = ToyRobot()
+    with pytest.raises(InvalidCommand):
+        bot.action_on_robot(command)
