@@ -22,7 +22,7 @@ def read_commands_from_file():
         for command in command_file:
             try:
                 bot.action_on_robot(command.strip())
-            except (IndexError, InvalidCoordinates):
+            except (IndexError, InvalidCoordinates, InvalidCommand):
                 print('Invalid command')
                 continue
 
